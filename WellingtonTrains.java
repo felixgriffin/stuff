@@ -80,7 +80,7 @@ public class WellingtonTrains{
 
     public void listAllStations(){
         //core
-for (String variableName : stat.keySet())
+        for (String variableName : stat.keySet())
         {
 
             UI.println("Name: " + variableName);
@@ -94,7 +94,7 @@ for (String variableName : stat.keySet())
 
             UI.println("Name: " + variableName);
         }
-        
+
     }
 
     public void loadStationData(){
@@ -126,10 +126,33 @@ for (String variableName : stat.keySet())
         catch (IOException e){
 
         }
+
+        File[] fileArray = new File("data/").listFiles();
+
+        for(File f: fileArray) // loop thru all files
+        {
+
+            if(f.getName().endsWith("stations.data")) // to deal with the .txt files.
+            {
+                
+                try{
+                    Scanner s = new Scanner(f); // to read the files
+                    while(s.hasNext()) {
+                        String stationName = s.next();
+                        Station station = stat.get(stationName);
+                        trainline.put(station);
+                    }
+                }
+                catch(IOException e){
+
+                }
+            }
+
+        }
+
     }
 
     public void loadTrainServicesData(){
-
     }
 
     public void listLinesOfStation(String stationName){
