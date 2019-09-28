@@ -139,8 +139,7 @@ public class WellingtonTrains{
                     Scanner s = new Scanner(f); // to read the files
                     while(s.hasNext()) {
                         String stationName = s.next();
-                        Station station = stat.get(stationName);
-                        trainline.put(station);
+                        stat.get(stationName).addTrainLine();
                     }
                 }
                 catch(IOException e){
