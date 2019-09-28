@@ -121,33 +121,29 @@ public class WellingtonTrains{
             while (sc.hasNext()){
                 String name = sc.next();
                 trainline.put(name, new TrainLine(name));
-            }
-        }
-        catch (IOException e){
 
-        }
+                File[] fileArray = new File("data/").listFiles();
+                for(File f: fileArray) // loop thru all files
+                {
 
-        File[] fileArray = new File("data/").listFiles();
+                    if(f.getName().endsWith("stations.data")) // to deal with the .txt files.
+                    {
 
-        for(File f: fileArray) // loop thru all files
-        {
-
-            if(f.getName().endsWith("stations.data")) // to deal with the .txt files.
-            {
-                
-                try{
-                    Scanner s = new Scanner(f); // to read the files
-                    while(s.hasNext()) {
-                        String stationName = s.next();
-                        stat.get(stationName).addTrainLine();
+                        try{
+                            Scanner s = new Scanner(f); // to read the files
+                            while(s.hasNext()) {
+                                String stationName = s.next();
+                                trainline.get(name).addStation(stat.get(stationName));
+                                stat.get(stationName).addTrainLine(trainline.get(name));
+                            }
+                        }
+                        catch(IOException e){}
                     }
-                }
-                catch(IOException e){
 
                 }
             }
-
         }
+        catch (IOException e){}
 
     }
 
