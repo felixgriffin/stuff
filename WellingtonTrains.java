@@ -105,6 +105,7 @@ public class WellingtonTrains{
             while (sc.hasNext()){
                 String name = sc.next();
                 stat.put(name, new Station(name, sc.nextInt(), sc.nextDouble()));
+                UI.println("stationName:" + stat.get(name).getName());
             }
         }
         catch (IOException e){
@@ -134,7 +135,9 @@ public class WellingtonTrains{
                             while(s.hasNext()) {
                                 String stationName = s.next();
                                 trainline.get(name).addStation(stat.get(stationName));
-                                stat.get(stationName).addTrainLine(trainline.get(name));
+                                //stat.get(stationName).addTrainLine(trainline.get(name));
+                                UI.println("tr: " + trainline.get(name).toString());
+                                UI.println("st: " + stat.get(stationName).toString());
                             }
                         }
                         catch(IOException e){}
