@@ -1,0 +1,55 @@
+import ecs100.*;
+import java.awt.Color;
+import java.util.*;
+import java.io.*;
+
+public class ImageInfo{
+
+public static final double HEIGHT_LARGE = 650;
+public static final double WIDTH_LARGE = 120;
+public static final double TOP_LARGE = 5;
+public static final double LEFT_LARGE = 5;
+public static final double TOP_TEXT = 50;
+public static final double LEFT_TEXT = WIDTH_LARGE+70;
+
+private String name;
+private String description;
+
+public ImageInfo(String n, String desc){
+  this.name = n;
+  this.description.desc;
+}
+
+public void displaySmall (double left, double top, double width, double height){
+  UI.drawImage(this.name+".jpg", left, top, width, height);
+}
+
+public void displayLarge(){
+  UI.drawImage(this.name+".jpg", LEFT_LARGE, TOP_LARGE, WIDTH_LARGE, HEIGHT_LARGE);
+  //Draw the text description to the right of the image
+  UI.setColor(Color.red);
+  UI.drawString(this.name, LEFT_TEXT, TOP_TEXT);
+  // Display 20 words per line
+  UI.setColor(Color.black);
+  String[] desc = this.description.split("\\s+");
+  int N=20; //number of words per line of text
+  StringBuilder text = new StringBuilder();
+  int numWords = desc.length;
+  int line = 0;
+  while (numWords > N){
+    for (int i=0; i<N; i++){
+      text.append(desc[i+N*line]+" ");
+    }
+    
+    line++;
+    numWords -= N;
+    UI.drawString(text.toString(), LEFT_TEXT, TOP_TEXT+20*line);
+    text.setLength(0);
+}
+for (int i=0; i<numWords; i++){
+  text.append(desc[i+N*line]+" ");
+}
+line++;
+UI.drawString(text.toString(), LEFT_TEXT, TOP_TEXT+20*line);
+}
+}
